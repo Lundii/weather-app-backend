@@ -21,12 +21,24 @@ describe('User gets weather details', function(){
       });
   });
 
-  it('should return a status code of 404 if city does not exit', (done) => {
+  it('should return a status code of 500 if city does not exit', (done) => {
     chai.request(server)
       .get('/api/v1/current-weather?cityName=112&countryCode=ng')
       .end((error, res) => {
+        console.log(res.body);
+        expect(res).to.have.status(500);
+        expect(res.body).to.have.keys('error');
+        done();
+      });
+  });
+
+  it('should return a status code of 404 page does not exit', (done) => {
+    chai.request(server)
+      .get('/api/v1/current-weath?cityName=112&countryCode=ng')
+      .end((error, res) => {
+        console.log(res.body);
         expect(res).to.have.status(404);
-        expect(res.body).to.have.keys('errors');
+        expect(res.body).to.have.keys('error');
         done();
       });
   });
