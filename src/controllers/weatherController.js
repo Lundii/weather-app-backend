@@ -1,5 +1,11 @@
 import rp from 'request-promise'
 
+/**
+ * controller to get the current weather of a city
+ * @param {object} req - the request object 
+ * @param {object} res - the response object
+ * @return - the current weather details
+ */
 const getCurrentWeather = async (req, res) => {
   const { cityName, countryCode  } = req.query;
   const APPID = process.env.APPID;
