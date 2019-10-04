@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.send(`Welcome to Weather App. Visit https://github.com/Lundii/weather-app-backend
+  res.send(`Welcome to Weather App. Visit "https://github.com/lundii/weather-app-backend"
             to learn more`)
 })
 
