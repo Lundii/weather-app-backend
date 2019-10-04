@@ -44,3 +44,15 @@ describe('User gets weather details', function(){
   });
 });
 
+describe('Get all countries', function () {
+
+  it('should get all countries with their country names', (done) => {
+    chai.request(server)
+      .get('/api/v1/countries')
+      .end((error, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.a('object');
+        done();
+      });
+  });
+});
