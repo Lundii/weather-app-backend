@@ -1,4 +1,5 @@
 import express from 'express';
+import '@babel/polyfill'
 import bodyParser from 'body-parser';
 import dotEnv from 'dotenv';
 import cors from 'cors';
