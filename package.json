@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "babel src --out-dir build --copy-files",
+    "start": "node build/server.js",
+    "heroku-postbuild": "npm run build",
     "start:dev": "nodemon --exec babel-node src/server.js",
     "test": "nyc --reporter=text --reporter=lcov mocha src/tests --recursive --require @babel/register --require @babel/polyfill --exit",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"

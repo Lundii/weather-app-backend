@@ -1,6 +1,7 @@
 import weatherController from './weatherController';
 
-const { getCurrentWeather } = weatherController;
+const { getCurrentWeather, getCountries } = weatherController;
 export default {
-  getCurrentWeather
+  getCurrentWeather,
+  getCountries
 }
