@@ -1,4 +1,5 @@
-import rp from 'request-promise'
+import rp from 'request-promise';
+import { transform } from '../utils';
 
 /**
  * controller to get the current weather of a city
@@ -13,13 +14,8 @@ const getCurrentWeather = async (req, res) => {
     const weatherAPI = `http://api.openweathermap.org/data/2.5/weather?q=${cityName},${countryCode}&APPID=${APPID}`;
     const getWeather = await rp(weatherAPI);
     const currrentWeather = JSON.parse(getWeather);
-    const { dt, weather, main, wind } = currrentWeather;
-    res.status(200).json({
-      date: dt,
-      main,
-      weather,
-      wind,
-    });
+    const data = transform(currrentWeather);
+    res.status(200).json(data);
   } catch(error) {
     res.status(500).json({
       error: error
@@ -27,6 +23,17 @@ const getCurrentWeather = async (req, res) => {
   }
 }
 
+const getCountries = async (req, res) => {
+  try {
+    const countries = await rp('http://country.io/names.json');
+    res.send(countries);
+  } catch(error) {
+    res.status(500).json({
+      error: error
+    })
+  }
+}
 export default {
-  getCurrentWeather
+  getCurrentWeather, 
+  getCountries
 }
